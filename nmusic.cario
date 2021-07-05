@@ -1,0 +1,93 @@
+import os, asyncio, threading
+print("Hello NMusic")
+global title
+title = "ありません"
+global vol
+vol = 50
+try:
+    print("Loading")
+    import pygame
+    import tkinter
+    from tkinter import filedialog
+    from mutagen.mp3 import MP3 as mp3
+    from mutagen.easyid3 import EasyID3
+    import time
+except:
+    print("Installing module")
+    os.system("pip install pygame")
+    os.system("pip install mutagen")
+    print("loading")
+    import pygame
+    import tkinter
+    from tkinter import filedialog
+    from mutagen.mp3 import MP3 as mp3
+    from mutagen.easyid3 import EasyID3
+    import time
+fType = [("",".mp3")]
+iDir = "c://"
+def play(d):
+    pygame.mixer.init(frequency = 44100)
+    for f in d:
+        global vol
+        pygame.mixer.music.load(f)
+        tags=EasyID3(f)
+        mp3_length = mp3(f).info.length
+        mnam = tags['title'][0]
+        ati = tags['artist'][0]
+        mnam + "\n" + ati
+        global title
+        title = mnam + "\n" + ati
+         # 音楽ファイルの読み込み
+        pygame.mixer.music.play(1)
+        pygame.mixer.music.set_volume(vol)         # 音楽の再生回数
+        time.sleep(mp3_length + 0.25)
+        pygame.mixer.music.stop()
+        title = "ありません"             # 再生の終了
+
+def m_play(d,vol):
+    pygame.mixer.init(frequency = 44100)
+    pygame.mixer.music.load(d)
+    pygame.mixer.music.play(1)
+    vol = int(vol) / 100
+    pygame.mixer.music.set_volume(vol)
+    mp3_length = mp3(d).info.length
+    time.sleep(mp3_length + 0.25)
+    pygame.mixer.music.stop()
+
+def start():
+    root = tkinter.Tk()
+    root.withdraw()
+    dir = filedialog.askopenfilenames(filetype = fType, initialdir = iDir)
+    root.destroy()
+    play(dir)
+def cmd():
+    while True:
+        c = input(">")
+        if c == "pause":
+            pygame.mixer.music.pause()
+        elif c == "play":
+            thread_1.start()
+        elif c == "unpause":
+            pygame.mixer.music.unpause()
+        elif c == "stop":
+            pygame.mixer.music.stop()
+        elif c == "vol":
+            global vol
+            vol = int(input(">>")) / 100
+            pygame.mixer.music.set_volume(vol)
+        elif c == "help":
+            global title
+            print(f"""
+pause:一時停止
+unpause:再開
+stop:停止
+vol: 音量 0~100の間で調整可能
+play:再生 再生中は使用しないでください
+再生中:
+{title}""")
+        
+if __name__ == "__main__":
+    thread_1 = threading.Thread(target=start)
+    musiccmd = threading.Thread(target=cmd)
+
+    musiccmd.start()
