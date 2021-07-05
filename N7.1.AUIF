@@ -1,5 +1,5 @@
 import configparser,subprocess,os,urllib.request,glob,sys
-print("NEXT7 Mock")
+print("NEXT7.1 Mock-SE")
 print("Next Console")
 store = configparser.ConfigParser()
 store.read(f'store.ini')
@@ -93,10 +93,10 @@ if __name__ == "__main__":
         c = input(">>")
         if c == "system":
             print("""
-    Next 7
+    Next 7.1
     OS: Next
-    Development codename: Mock
-    Ver: 7
+    Development codename: Mock-SE
+    Ver: 7.1
     Kernel: Indas-Next""")
 
         elif c == "boot":
