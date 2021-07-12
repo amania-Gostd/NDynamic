@@ -27,4 +27,5 @@ ydl_opts = {
 
 ydl = youtube_dl.YoutubeDL(ydl_opts)
 info_dict = ydl.extract_info(input("URL>>"), download=True)
+print("[Music]Load Music")
 m_play("temp.mp3","50")
