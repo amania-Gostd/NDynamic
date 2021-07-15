@@ -1,0 +1,154 @@
+import configparser,subprocess,os,urllib.request,glob,sys,time
+print("""Loading os....
+[loder]Booting OpenMediaKernel-15""")
+time.sleep(3)
+print("[loder]Booting KME-1.0")
+time.sleep(1)
+print("[loder]Booting PecSinium3")
+time.sleep(2)
+print("[loder]Booting Darwin")
+time.sleep(5)
+print("[loder]Booting WindowsNext")
+time.sleep(10)
+print("[Loading]KOSMOS-Input")
+time.sleep(2)
+print("[Next-plus]Loading CUI")
+time.sleep(5)
+print("[loder] Pro-System")
+time.sleep(2)
+print("[boot]loading NextOS-Core")
+time.sleep(3)
+print("[driver]Load KOSMOS-Keyboard-Driver.dv")
+time.sleep(1)
+print("[driver]Load NEXT-Display.dv")
+time.sleep(0.5)
+print("[driver]Load BIOS-Contlole.dv")
+time.sleep(2)
+print("[loder]Booting Next8 Nonkwork OMEdition")
+time.sleep(10)
+print("[Next]Loading CARIO")
+time.sleep(0.5)
+print("[Next]Loading openmedia")
+time.sleep(0.5)
+print("""[setting] KOSMOS:Ja-jp IN;JA-JP Openmedia:openmedia.ini""")
+time.sleep(0.5)
+print("All complite")
+store = configparser.ConfigParser()
+store.read(f'store.ini')
+repo = configparser.ConfigParser()
+repo.read(f'repo.ini')
+def vprint(s):
+    [print(p) for p in s]
+def install(app):
+    try:
+        d = store["Defalt"][app]
+        urllib.request.urlretrieve(d,f"{app}.cario")
+        print("Complite")
+    except KeyError as e:
+        print(f"{app}は存在しません")
+def cmd(c):
+    if c == "app-info":
+        print("""
+        システムアプリケーション
+        Open Media Application
+        Pro8
+        拡張機能
+        Next-plus++
+        """)
+    elif c == "Cario":
+        print("""Cario 8.0
+アプリケーションの起動 = app
+アプリケーションストアの起動 = store
+        """)
+        c = input(">>")
+        if c == "app":
+            print("インストール済みアプリケーション")
+            file_list = glob.glob("./*.cario", recursive=True)
+            file_list = [os.path.basename(r) for r in file_list]
+            for x in file_list:
+              print(x.replace('.cario', ''))
+            s = input("起動するアプリケーションを入力>>")
+            os.system(f"python {s}.cario")
+        elif c == "store":
+            print("更新しています")
+            for key in repo['Defalt']:
+                r = repo["Defalt"][key]
+                urllib.request.urlretrieve(r, f"store.ini")
+                store.read(f'store.ini')
+            print("""
+アプリ一覧""")
+            for key in store['Defalt']:
+                print(key)
+            install(input("インストールするアプリ名>>"))
+
+    elif c == "sus-com":
+        print("sus.Next-Gloup.com")
+    elif c == "system":
+            print("""
+    Next 8
+    OS: Next
+    Development codename: Nonkwork
+    Ver: 8
+    Kernel: OpenMediaKernel-15 + KME-1.0 + PecSinium3 + Darwin + WindowsNext
+    CUI-program: OSLTerminal
+    Activation: Yes (2021 Next8 Nonkwork OMEdition)
+    OEM: Not OEM
+    <Next-Plus-Config>
+    Extensions:
+    KOSMOS-input
+    SYSTEM-8-Plus
+    System protection:
+    Norton
+    Locked Applications:
+    PSI-Exp
+    Discomm-x
+    infinity+
+    Lormas
+    Root Applications:
+    Next-plus++
+    Cario
+    System-UPdate
+    Clover
+    """)
+
+
+def cario(a):
+    print("""NEXT8 Module Contloler
+Loading......OK
+""")
+    print("Loading Repo")
+    print("更新しています")
+    for key in repo['Defalt']:
+        r = repo["Defalt"][key]
+        urllib.request.urlretrieve(r, f"store.ini")
+        store.read(f'store.ini')
+    install(a) 
+if __name__ == "__main__":
+    while True:
+        c = "boot"
+        print(">>login")
+        if c == "boot":
+            print("""
+Welcome to NextOS 8
+Web page:
+dcom://www.next.com/OpenMedia/NextOS/8/
+dcom://www.openmedia.com/nextos/Nonkwork/
+dcom://next.openmedia.com/8/
+dcom://next.seccond.com/8/
+Support 2021
+amania Inc. 2015~2021
+Next-SE 2021
+openmedia 2021
+OS: Next8 Nonkwork OMEdition
+Login protocol:SCVD-467
+Video-Driver: NGD-3090
+CPU-Driver: NPD-4600
+
+            """)
+            while True:
+                c = input(">>")
+                cmd(c)
+        elif c == "exit":
+            break
+        else:
+            print("Not command")
