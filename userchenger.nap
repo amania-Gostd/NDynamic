@@ -3,7 +3,6 @@ print("初期化(s) ログイン(y) 新規ユーザー(n)")
 import configparser,subprocess,os,urllib.request,glob,sys,time
 us = configparser.ConfigParser()
 us.read(f'user.ini')
-c = input(">")
 l = '''import configparser,subprocess,os,urllib.request,glob,sys,time
 print("""One-Next 1.4 loading....""")
 time.sleep(5)
