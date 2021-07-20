@@ -193,6 +193,7 @@ while True:
         dd = open(f"USER/{u}/repo.ini", "w", encoding='UTF-8')
         dd.write(cn)
         dd.close()
+        us.read(f'user.ini')
         print("Complited")
         cnf = open("user.ini", "w", encoding='UTF-8')
         cnf.write(f"""[Defalt]
