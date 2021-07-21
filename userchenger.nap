@@ -1,10 +1,11 @@
-print("UserChenger Ver.0.1")
+
+print("Next Login Manager")
 print("初期化(s) ログイン(y) 新規ユーザー(n)")
 import configparser,subprocess,os,urllib.request,glob,sys,time
 us = configparser.ConfigParser()
 us.read(f'user.ini')
 l = '''import configparser,subprocess,os,urllib.request,glob,sys,time
-print("""One-Next 1.4 loading....""")
+print("""One-Next 2 loading....""")
 time.sleep(5)
 store = configparser.ConfigParser()
 store.read(f'store.ini')
@@ -29,7 +30,7 @@ def cmd(c):
         Next-plus++
         """)
     elif c == "Cario":
-        print("""Cario 8.0
+        print("""Cario 9.0
 アプリケーションの起動 = app
 アプリケーションストアの起動 = store
         """)
@@ -54,8 +55,8 @@ def cmd(c):
                 print(key)
             install(input("インストールするアプリ名>>"),"cario")
         
-    elif c == "NAM":
-        print("""Nap Application Manager 10
+    elif c == "nam":
+        print("""Nap Application Manager 11
 アプリケーションの起動 = app
 アプリケーションストアの起動 = store
         """)
@@ -98,18 +99,16 @@ comment:{come}""")
     elif c == "nf":
         print("""Name: Defalt App
 Publisher: NextOS-Developer
-Support Ver: 21717(World)
-Famous content: NEXTOS-DEVGLOUP-NEXT10-INSTALL-SOPPORT-FAMOUS
-Issue ID: l2z-xcv-775-qx""")
+Support Ver: 21720(Dev)
+Famous content: NEXTOS-DEV-EDITION
+Issue ID: xcv-667-qx7""")
     elif c == "system":
-            print("""Next OS 10
-Edition	 Next 10 home
-update	 21717
+            print("""Next OS 11
+Edition	 Next 11 Home
+update	 21720
 OS build 10.7
-Kernel   One-Next 21717.1.4 Nosmor
+Kernel   One-Next 21720.2 basics
 Famous: True""")
-
-
 def cario(a):
     print("""NEXT8 Module Contloler
 Loading......OK
@@ -123,25 +122,23 @@ Loading......OK
     install(a) 
 if __name__ == "__main__":
     while True:
-        c = "boot"
-        print(">>login")
-        if c == "boot":
+        c = "Login"
+        if c == "Login":
             print("""
-Welcome to NextOS 10
+Welcome to NextOS 11
 Web page:
-dcom://www.next.com/OpenMedia/NextOS/10/
-dcom://www.openmedia.com/nextos/Nosmor/
-dcom://next.openmedia.com/10/
-dcom://next.seccond.com/10/
+dcom://www.next.com/OpenMedia/NextOS/11/
+dcom://www.openmedia.com/nextos/onenext/2
+dcom://next.openmedia.com/11/
+dcom://next.seccond.com/11/
 Support 2021
 amania Inc. 2015~2021
 Next-SE 2021
 openmedia 2021
-OS: Next10 Nosmor NosmorEdition
-Login protocol:Next-Login.nap
-Video-Driver: NGD-3090
-CPU-Driver: NPD-4600
-
+OS: Next 11 Home
+Login protocol: XNLM
+Video-Driver: NVD
+CPU-Driver: NCD
             """)
             while True:
                 c = input(">>")
@@ -177,6 +174,8 @@ while True:
 {u} = USER\{u}""")
         cnf.close()
     elif  c == "y":
+        us = configparser.ConfigParser()
+        us.read(f'user.ini')
         for us in us['Defalt']:
             print(us)
         u = input("USER-SELECT>>")
@@ -199,4 +198,3 @@ while True:
         cnf.write(f"""[Defalt]
 {u} = USER\{u}""")
         cnf.close()
-    
