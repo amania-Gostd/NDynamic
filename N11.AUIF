@@ -1,9 +1,4 @@
-print("Next Login Manager")
-print("初期化(s) ログイン(y) 新規ユーザー(n)")
 import configparser,subprocess,os,urllib.request,glob,sys,time
-us = configparser.ConfigParser()
-us.read(f'user.ini')
-l = '''import configparser,subprocess,os,urllib.request,glob,sys,time
 print("""One-Next 2 loading....""")
 time.sleep(5)
 store = configparser.ConfigParser()
@@ -103,13 +98,11 @@ Famous content: NEXTOS-DEV-EDITION
 Issue ID: xcv-667-qx7""")
     elif c == "system":
             print("""Next OS 11
-Edition	 Next 11 Developer
+Edition	 Next 11 Home
 update	 21720
 OS build 10.7
 Kernel   One-Next 21720.2 basics
 Famous: True""")
-
-
 def cario(a):
     print("""NEXT8 Module Contloler
 Loading......OK
@@ -122,7 +115,6 @@ Loading......OK
         store.read(f'store.ini')
     install(a) 
 if __name__ == "__main__":
-    print("ONE-Next 2 Beta")
     while True:
         c = "Login"
         if c == "Login":
@@ -137,11 +129,10 @@ Support 2021
 amania Inc. 2015~2021
 Next-SE 2021
 openmedia 2021
-OS: Next 11 Dev
+OS: Next 11 Home
 Login protocol: XNLM
 Video-Driver: NVD
 CPU-Driver: NCD
-
             """)
             while True:
                 c = input(">>")
@@ -149,56 +140,4 @@ CPU-Driver: NCD
         elif c == "exit":
             break
         else:
-            print("Not command")'''
-cn = """[Defalt]
-defalt = https://github.com/amania-Gostd/Gostd/raw/main/store.ini
-Ndynamic = https://github.com/amania-Gostd/NDynamic/raw/main/store.ini"""
-def vprint(s):
-    [print(p) for p in s]
-while True:
-    c = input(">")
-    if c == "s":
-        print("Deleteing User 実行するとユーザーの中にあるすべてのファイルが消去されます")
-        os.system("rmdir /s USER")
-        u = input("ユーザー名の入力>")
-        print("作成中")
-        os.system(f"mkdir USER\{u}")
-        print("Installing NextOS")
-        n = open(f"USER/{u}/Next.py", "w", encoding='UTF-8')
-        n.write(l)
-        n.close()
-        print("Setting repo")
-        dd = open(f"USER/{u}/repo.ini", "w", encoding='UTF-8')
-        dd.write(cn)
-        dd.close()
-        print("Complited")
-        cnf = open("user.ini", "w", encoding='UTF-8')
-        cnf.write(f"""[Defalt]
-{u} = USER\{u}""")
-        cnf.close()
-    elif  c == "y":
-        us = configparser.ConfigParser()
-        us.read(f'user.ini')
-        for us in us['Defalt']:
-            print(us)
-        u = input("USER-SELECT>>")
-        os.system(f"cd USER\{u} && python Next.py")
-    elif c == "n":
-        u = input("ユーザー名の入力>")
-        print("作成中")
-        os.system(f"mkdir USER\{u}")
-        print("Installing NextOS")
-        n = open(f"USER/{u}/Next.py", "w", encoding='UTF-8')
-        n.write(l)
-        n.close()
-        print("Setting repo")
-        dd = open(f"USER/{u}/repo.ini", "w", encoding='UTF-8')
-        dd.write(cn)
-        dd.close()
-        us.read(f'user.ini')
-        print("Complited")
-        cnf = open("user.ini", "w", encoding='UTF-8')
-        cnf.write(f"""[Defalt]
-{u} = USER\{u}""")
-        cnf.close()
-    
+            print("Not command")
